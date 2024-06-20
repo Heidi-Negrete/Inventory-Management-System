@@ -109,22 +109,50 @@ namespace heidi_schwartz_C968
 
         private void searchPartsClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(tbPartsSearch.Text))
+            {
+                dgvPartsMain.DataSource = Inventory.AllParts;
+                return;
+            }
+
+            var results = Inventory.AllParts
+                                   .Where(part => part.Name.ToLower()
+                                   .Contains(tbPartsSearch.Text.ToLower()))
+                                   .ToList();
+
+            if (results.Count == 0)
+            {
+                MessageBox.Show("No results found.");
+                return;
+            }
+            else
+            {
+                dgvPartsMain.DataSource = results;
+            }
         }
 
         private void searchProductsClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
-        }
+            if (string.IsNullOrWhiteSpace(tbProductsSearch.Text))
+            {
+                dgvProductsMain.DataSource = Inventory.Products;
+                return;
+            }
 
-        private void partSearchTextChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+            var results = Inventory.Products
+                                   .Where(product => product.Name.ToLower()
+                                   .Contains(tbProductsSearch.Text.ToLower()))
+                                   .ToList();
 
-        private void productSearchTextChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
+            if (results.Count == 0)
+            {
+                MessageBox.Show("No results found.");
+                return;
+            }
+            else
+            {
+                dgvProductsMain.DataSource = results;
+            }
         }
     }
 }

@@ -122,7 +122,6 @@
             this.tbPartsSearch.Name = "tbPartsSearch";
             this.tbPartsSearch.Size = new System.Drawing.Size(155, 20);
             this.tbPartsSearch.TabIndex = 10;
-            this.tbPartsSearch.TextChanged += new System.EventHandler(this.partSearchTextChanged);
             // 
             // tbProductsSearch
             // 
@@ -130,7 +129,6 @@
             this.tbProductsSearch.Name = "tbProductsSearch";
             this.tbProductsSearch.Size = new System.Drawing.Size(155, 20);
             this.tbProductsSearch.TabIndex = 11;
-            this.tbProductsSearch.TextChanged += new System.EventHandler(this.productSearchTextChanged);
             // 
             // btnPartsAdd
             // 

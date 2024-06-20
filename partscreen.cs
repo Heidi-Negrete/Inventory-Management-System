@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using heidi_schwartz_C968.model;
@@ -14,7 +15,9 @@ namespace heidi_schwartz_C968
     public partial class partscreen : Form
     {
         bool modifyingPart = false;
-        // struct for Inhouse and Outsourced
+        enum Source
+        { InHouse, Outsourced };
+        Source source;
         public partscreen()
         {
             InitializeComponent();
@@ -26,6 +29,7 @@ namespace heidi_schwartz_C968
                 tbID.Text = Inventory.generatePartID().ToString();
                 rbInHouse.Checked = true;
                 lblPartSource.Text = "Company Name";
+                source = Source.InHouse;
             }
             else
             {
@@ -41,6 +45,20 @@ namespace heidi_schwartz_C968
                 tbMax.Text = CurrentPart.Max.ToString();
 
                 // check source and set accordingly
+                if (CurrentPart is Inhouse)
+                {
+                    rbInHouse.Checked = true;
+                    lblPartSource.Text = "Machine ID";
+                    tbPartSource.Text = ((Inhouse)CurrentPart).MachineID.ToString();
+                    source = Source.InHouse;
+                }
+                else
+                {
+                    rbOutsourced.Checked = true;
+                    lblPartSource.Text = "Company Name";
+                    tbPartSource.Text = ((Outsourced)CurrentPart).CompanyName;
+                    source = Source.Outsourced;
+                }
             }
 
             tbID.Enabled = false;
@@ -50,13 +68,36 @@ namespace heidi_schwartz_C968
         private void rbOutsourcedClicked(object sender, EventArgs e)
         {
             lblPartSource.Text = "Company Name";
-            // make sure to validate tbPartSource.Text
+
+            bool isAlphabet = Regex.IsMatch(tbPartSource.Text, "[a-z]", RegexOptions.IgnoreCase);
+
+            if (string.IsNullOrWhiteSpace(tbPartSource.Text) || !isAlphabet)
+            {
+                tbPartSource.BackColor = System.Drawing.Color.Salmon;
+            }
+            else
+            {
+                tbPartSource.BackColor = System.Drawing.Color.White;
+            }
+
+            btnSavePart.Enabled = validatePart();
         }
 
         private void rbInHouseClicked(object sender, EventArgs e)
         {
             lblPartSource.Text = "Machine ID";
-            // make sure to validate tbPartSource.Text
+
+            int num;
+            if(!Int32.TryParse(tbPartSource.Text, out num))
+            {                 
+                tbPartSource.BackColor = System.Drawing.Color.Salmon;
+            }
+            else
+            {
+                tbPartSource.BackColor = System.Drawing.Color.White;
+            }
+
+            btnSavePart.Enabled = validatePart();
         }
 
         private void saveClicked(object sender, EventArgs e)
@@ -79,10 +120,16 @@ namespace heidi_schwartz_C968
             int min = int.Parse(tbMin.Text);
             int max = int.Parse(tbMax.Text);
 
-            // new Inhouse or Outsourced depending on radio button
-            //Inventory.addPart(new Part();
-
-            Part part = Inventory.lookupPart(id);
+            if (source == Source.InHouse)
+            {
+                int machineID = int.Parse(tbPartSource.Text);
+                Inventory.addPart(new Inhouse(id, name, price, inStock, min, max, machineID));
+            }
+            else
+            {
+                string companyName = tbPartSource.Text;
+                Inventory.addPart(new Outsourced(id, name, price, inStock, min, max, companyName));
+            }
 
             Inventory.CurrentPart = null;
 
