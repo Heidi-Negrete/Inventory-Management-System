@@ -15,10 +15,14 @@ namespace heidi_schwartz_C968
     {
         bool modifyingProduct = false;
         private BindingList<Part> CurrentAssociatedParts;
+        ErrorProvider toolTip = new ErrorProvider();
+
         // is this ok?
         public productscreen()
         {
             InitializeComponent();
+
+            toolTip.BlinkStyle = ErrorBlinkStyle.NeverBlink;
 
             if (Inventory.CurrentProduct == null)
             {
@@ -128,10 +132,12 @@ namespace heidi_schwartz_C968
             if (string.IsNullOrWhiteSpace(tbName.Text))
             {
                 tbName.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbName, "Please enter a valid name.");
             }
             else
             {
                 tbName.BackColor = System.Drawing.Color.White;
+                toolTip.SetError(tbName, "");
             }
             btnSaveProduct.Enabled = validateProduct();
         }
@@ -142,10 +148,12 @@ namespace heidi_schwartz_C968
             if (!Int32.TryParse(tbInventory.Text, out number))
             {
                 tbInventory.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbInventory, "Please enter a valid number.");
             }
             else
             {
                 tbInventory.BackColor = System.Drawing.Color.White;
+                toolTip.SetError(tbInventory, "");
             }
             btnSaveProduct.Enabled = validateProduct();
         }
@@ -167,11 +175,13 @@ namespace heidi_schwartz_C968
             if (!Int32.TryParse(tbMin.Text, out min))
             {
                 tbMin.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbMin, "Please enter a valid number.");
                 return;
             }
             if (!Int32.TryParse(tbMax.Text, out max))
             {
                 tbMax.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbMax, "Please enter a valid number.");
                 return;
             }
             if (min > max || (min < 0 || max < 0))
@@ -179,11 +189,15 @@ namespace heidi_schwartz_C968
                 tbMin.BackColor = System.Drawing.Color.Salmon;
                 tbMax.BackColor = System.Drawing.Color.Salmon;
                 // please input a valid min and max
+                toolTip.SetError(tbMin, "Please enter a valid minimum and maximum.");
+                toolTip.SetError(tbMax, "Please enter a valid minimum and maximum.");
             }
             else
             {
                 tbMin.BackColor = System.Drawing.Color.White;
                 tbMax.BackColor = System.Drawing.Color.White;
+                toolTip.SetError(tbMin, "");
+                toolTip.SetError(tbMax, "");
             }
             btnSaveProduct.Enabled = validateProduct();
             }
@@ -194,10 +208,12 @@ namespace heidi_schwartz_C968
             if (!Decimal.TryParse(tbPrice.Text, out price))
             {
                 tbPrice.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbPrice, "Please enter a valid price.");
             }
             else
             {
                 tbPrice.BackColor = System.Drawing.Color.White;
+                toolTip.SetError(tbPrice, "");
             }
             btnSaveProduct.Enabled = validateProduct();
         }

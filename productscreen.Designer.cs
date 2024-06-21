@@ -106,7 +106,7 @@
             // 
             // tbMin
             // 
-            this.tbMin.Location = new System.Drawing.Point(200, 272);
+            this.tbMin.Location = new System.Drawing.Point(187, 272);
             this.tbMin.Name = "tbMin";
             this.tbMin.Size = new System.Drawing.Size(74, 20);
             this.tbMin.TabIndex = 11;
@@ -114,7 +114,7 @@
             // 
             // tbMax
             // 
-            this.tbMax.Location = new System.Drawing.Point(66, 272);
+            this.tbMax.Location = new System.Drawing.Point(53, 272);
             this.tbMax.Name = "tbMax";
             this.tbMax.Size = new System.Drawing.Size(74, 20);
             this.tbMax.TabIndex = 10;
@@ -155,7 +155,7 @@
             // 
             this.lblMin.AutoSize = true;
             this.lblMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMin.Location = new System.Drawing.Point(153, 268);
+            this.lblMin.Location = new System.Drawing.Point(140, 268);
             this.lblMin.Name = "lblMin";
             this.lblMin.Size = new System.Drawing.Size(41, 24);
             this.lblMin.TabIndex = 5;
@@ -165,7 +165,7 @@
             // 
             this.lblMax.AutoSize = true;
             this.lblMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMax.Location = new System.Drawing.Point(14, 268);
+            this.lblMax.Location = new System.Drawing.Point(1, 268);
             this.lblMax.Name = "lblMax";
             this.lblMax.Size = new System.Drawing.Size(46, 24);
             this.lblMax.TabIndex = 4;
@@ -316,6 +316,8 @@
             this.Controls.Add(this.btnSaveProduct);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.lblAddModifyProduct);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "productscreen";
             this.Text = "Add/Modify Product";
             this.splitContainer1.Panel1.ResumeLayout(false);

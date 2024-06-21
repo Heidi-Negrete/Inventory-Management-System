@@ -198,6 +198,7 @@
             this.tbPartSource.Name = "tbPartSource";
             this.tbPartSource.Size = new System.Drawing.Size(146, 20);
             this.tbPartSource.TabIndex = 26;
+            this.tbPartSource.TextChanged += new System.EventHandler(this.sourceTextChanged);
             // 
             // lblPartSource
             // 
@@ -229,6 +230,7 @@
             this.btnSavePart.TabIndex = 28;
             this.btnSavePart.Text = "Save";
             this.btnSavePart.UseVisualStyleBackColor = true;
+            this.btnSavePart.Click += new System.EventHandler(this.saveClicked);
             // 
             // partscreen
             // 
@@ -254,6 +256,8 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.lblAddModifyPart);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "partscreen";
             this.Text = "text set in code";
             this.ResumeLayout(false);

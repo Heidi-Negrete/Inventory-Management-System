@@ -87,7 +87,19 @@ namespace heidi_schwartz_C968
 
         private void deletePartsClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (dgvPartsMain.CurrentRow == null || !dgvPartsMain.CurrentRow.Selected)
+            {
+                MessageBox.Show("Please select a part to delete.");
+                return;
+            }
+            Part CurrentPart = dgvPartsMain.CurrentRow.DataBoundItem as Part;
+
+            DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete {CurrentPart}?", "Delete Part", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+            Inventory.removePart(CurrentPart);
         }
 
         private void deleteProductsClicked(object sender, EventArgs e)
