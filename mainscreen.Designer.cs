@@ -105,7 +105,6 @@
             this.btnPartsSearch.Text = "Search";
             this.btnPartsSearch.UseVisualStyleBackColor = true;
             this.btnPartsSearch.Click += new System.EventHandler(this.searchPartsClicked);
-            this.btnPartsSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchPartsKeyDowned);
             // 
             // btnProductsSearch
             // 
@@ -116,7 +115,6 @@
             this.btnProductsSearch.Text = "Search";
             this.btnProductsSearch.UseVisualStyleBackColor = true;
             this.btnProductsSearch.Click += new System.EventHandler(this.searchProductsClicked);
-            this.btnProductsSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchProductKeyDowned);
             // 
             // tbPartsSearch
             // 
@@ -124,6 +122,7 @@
             this.tbPartsSearch.Name = "tbPartsSearch";
             this.tbPartsSearch.Size = new System.Drawing.Size(155, 20);
             this.tbPartsSearch.TabIndex = 10;
+            this.tbPartsSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchPartsKeyDowned);
             // 
             // tbProductsSearch
             // 
@@ -131,6 +130,7 @@
             this.tbProductsSearch.Name = "tbProductsSearch";
             this.tbProductsSearch.Size = new System.Drawing.Size(155, 20);
             this.tbProductsSearch.TabIndex = 11;
+            this.tbProductsSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchProductKeyDowned);
             // 
             // btnPartsAdd
             // 
