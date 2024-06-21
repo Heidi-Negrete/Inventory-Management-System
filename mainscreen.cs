@@ -13,6 +13,7 @@ namespace heidi_schwartz_C968
 {
     public partial class mainscreen : Form
     {
+        // Checklist OK? where should be using try/catch?
         public mainscreen()
         {
             InitializeComponent();
@@ -116,6 +117,11 @@ namespace heidi_schwartz_C968
             {
                 return;
             }
+            if (CurrentProduct.AssociatedParts.Count > 0)
+            {
+                MessageBox.Show("Product has associated parts. Please remove all associated parts before deleting.");
+                return;
+            }
             Inventory.removeProduct(CurrentProduct.ProductID);
         }
 
@@ -164,6 +170,22 @@ namespace heidi_schwartz_C968
             else
             {
                 dgvProductsMain.DataSource = results;
+            }
+        }
+
+        private void searchPartsKeyDowned(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                searchPartsClicked(sender, e);
+            }
+        }
+
+        private void searchProductKeyDowned(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                searchProductsClicked(sender, e);
             }
         }
     }

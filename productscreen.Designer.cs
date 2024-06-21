@@ -237,6 +237,7 @@
             this.tbSearchParts.Name = "tbSearchParts";
             this.tbSearchParts.Size = new System.Drawing.Size(178, 20);
             this.tbSearchParts.TabIndex = 17;
+            this.tbSearchParts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchBoxKeyDowned);
             // 
             // btnSearchParts
             // 
@@ -246,6 +247,7 @@
             this.btnSearchParts.TabIndex = 16;
             this.btnSearchParts.Text = "Search";
             this.btnSearchParts.UseVisualStyleBackColor = true;
+            this.btnSearchParts.Click += new System.EventHandler(this.searchPartsClicked);
             // 
             // lblAssociatedParts
             // 

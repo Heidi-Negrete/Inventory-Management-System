@@ -105,6 +105,7 @@
             this.btnPartsSearch.Text = "Search";
             this.btnPartsSearch.UseVisualStyleBackColor = true;
             this.btnPartsSearch.Click += new System.EventHandler(this.searchPartsClicked);
+            this.btnPartsSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchPartsKeyDowned);
             // 
             // btnProductsSearch
             // 
@@ -115,6 +116,7 @@
             this.btnProductsSearch.Text = "Search";
             this.btnProductsSearch.UseVisualStyleBackColor = true;
             this.btnProductsSearch.Click += new System.EventHandler(this.searchProductsClicked);
+            this.btnProductsSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchProductKeyDowned);
             // 
             // tbPartsSearch
             // 

@@ -192,10 +192,20 @@ namespace heidi_schwartz_C968
                 toolTip.SetError(tbMin, "Please enter a valid minimum and maximum.");
                 toolTip.SetError(tbMax, "Please enter a valid minimum and maximum.");
             }
+            if (min > Inventory.CurrentProduct.InStock || max < Inventory.CurrentProduct.InStock)
+            {
+                tbMin.BackColor = System.Drawing.Color.Salmon;
+                tbMax.BackColor = System.Drawing.Color.Salmon;
+                tbInventory.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbInventory, "Inventory must be between the minimum and maximum.");
+                toolTip.SetError(tbMin, "Inventory must be greater than or equal to minimum.");
+                toolTip.SetError(tbMax, "Inventory must be less than or equal to the maximum.");
+            }
             else
             {
                 tbMin.BackColor = System.Drawing.Color.White;
                 tbMax.BackColor = System.Drawing.Color.White;
+                toolTip.SetError(tbInventory, "");
                 toolTip.SetError(tbMin, "");
                 toolTip.SetError(tbMax, "");
             }
@@ -244,6 +254,38 @@ namespace heidi_schwartz_C968
             CurrentAssociatedParts.Remove(dgvAssociatedParts.CurrentRow.DataBoundItem as Part);
 
             btnSaveProduct.Enabled = validateProduct();
+        }
+
+        private void searchPartsClicked(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbSearchParts.Text))
+            {
+                dgvAllParts.DataSource = Inventory.AllParts;
+                return;
+            }
+
+            var results = Inventory.AllParts
+                                   .Where(part => part.Name.ToLower()
+                                   .Contains(tbSearchParts.Text.ToLower()))
+                                   .ToList();
+
+            if (results.Count == 0)
+            {
+                MessageBox.Show("No results found.");
+                return;
+            }
+            else
+            {
+                dgvAllParts.DataSource = results;
+            }
+        }
+
+        private void searchBoxKeyDowned(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                searchPartsClicked(sender, e);
+            }
         }
     }
 }
