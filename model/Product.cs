@@ -35,12 +35,25 @@ namespace heidi_schwartz_C968.model
 
         public bool removeAssociatedPart(int partID)
         {
-            throw new NotImplementedException();
+            Part part = lookupAssociatedPart(partID);
+            if (part != null)
+            {
+                AssociatedParts.Remove(part);
+                return true;
+            }
+            return false;
         }
 
         public Part lookupAssociatedPart(int partID)
         {
-            throw new NotImplementedException();
+            foreach (Part part in AssociatedParts)
+            {
+                if (part.PartID == partID)
+                {
+                    return part;
+                }
+            }
+            return null;
         }
 
         public override string ToString()

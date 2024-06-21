@@ -33,7 +33,7 @@ namespace heidi_schwartz_C968
                 this.Text = "Add Part";
                 tbID.Text = Inventory.generatePartID().ToString();
                 rbInHouse.Checked = true;
-                lblPartSource.Text = "Company Name";
+                lblPartSource.Text = "Machine ID";
                 source = Source.InHouse;
             }
             else
@@ -74,8 +74,7 @@ namespace heidi_schwartz_C968
         {
             lblPartSource.Text = "Company Name";
             validateOutSource();
-
-            btnSavePart.Enabled = validatePart();
+            source = Source.Outsourced;
         }
 
         private void validateOutSource()
@@ -86,11 +85,13 @@ namespace heidi_schwartz_C968
             {
                 tbPartSource.BackColor = System.Drawing.Color.Salmon;
                 toolTip.SetError(tbPartSource, "Please enter a valid company name");
+                btnSavePart.Enabled = false;
             }
             else
             {
                 tbPartSource.BackColor = System.Drawing.Color.White;
                 toolTip.SetError(tbPartSource, "");
+                btnSavePart.Enabled = validatePart();
             }
         }
 
@@ -98,8 +99,7 @@ namespace heidi_schwartz_C968
         {
             lblPartSource.Text = "Machine ID";
             validateInHouseSource();
-
-            btnSavePart.Enabled = validatePart();
+            source = Source.InHouse;
         }
 
         private void validateInHouseSource()
@@ -109,12 +109,15 @@ namespace heidi_schwartz_C968
             {
                 tbPartSource.BackColor = System.Drawing.Color.Salmon;
                 toolTip.SetError(tbPartSource, "Please enter a valid machine ID");
+                btnSavePart.Enabled = false;
             }
             else
             {
                 tbPartSource.BackColor = System.Drawing.Color.White;
                 toolTip.SetError(tbPartSource, "");
+                btnSavePart.Enabled = validatePart();
             }
+            
         }
 
         private void saveClicked(object sender, EventArgs e)
@@ -128,7 +131,7 @@ namespace heidi_schwartz_C968
             }
             else
             {
-                id = Inventory.generatePartID();
+                id = Int32.Parse(tbID.Text);
             }
 
             string name = tbName.Text;
@@ -213,17 +216,18 @@ namespace heidi_schwartz_C968
         {
             int min;
             int max;
-            if (!Int32.TryParse(tbMin.Text, out min))
+            bool isValid = true;
+            if (!Int32.TryParse(tbMin.Text, out min) || string.IsNullOrEmpty(tbMin.Text))
             {
                 tbMin.BackColor = System.Drawing.Color.Salmon;
                 toolTip.SetError(tbMin, "Please enter a valid minimum");
-                return;
+                isValid = false;
             }
-            if (!Int32.TryParse(tbMax.Text, out max))
+            if (!Int32.TryParse(tbMax.Text, out max) || string.IsNullOrEmpty(tbMax.Text))
             {
                 tbMax.BackColor = System.Drawing.Color.Salmon;
                 toolTip.SetError(tbMax, "Please enter a valid maximum");
-                return;
+                isValid = false;
             }
             if (min > max || (min < 0 || max < 0))
             {
@@ -231,15 +235,16 @@ namespace heidi_schwartz_C968
                 tbMax.BackColor = System.Drawing.Color.Salmon;
                 toolTip.SetError(tbMin, "Please enter a valid minimum.");
                 toolTip.SetError(tbMax, "Please enter a valid maximum.");
+                isValid = false;
             }
-            else
+            if (isValid)
             {
                 tbMin.BackColor = System.Drawing.Color.White;
                 tbMax.BackColor = System.Drawing.Color.White;
                 toolTip.SetError(tbMin, "");
                 toolTip.SetError(tbMax, "");
+                btnSavePart.Enabled = validatePart();
             }
-            btnSavePart.Enabled = validatePart();
         }
 
         private void priceTextChanged(object sender, EventArgs e)

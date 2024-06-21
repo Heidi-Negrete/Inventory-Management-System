@@ -100,7 +100,16 @@ namespace heidi_schwartz_C968
             {
                 return;
             }
+            foreach (Product product in Inventory.Products)
+            {
+                if (product.lookupAssociatedPart(CurrentPart.PartID) != null)
+                {
+                    MessageBox.Show("Part is associated with a product. Please remove all associations before deleting.");
+                    return;
+                }
+            }
             Inventory.removePart(CurrentPart);
+
         }
 
         private void deleteProductsClicked(object sender, EventArgs e)
