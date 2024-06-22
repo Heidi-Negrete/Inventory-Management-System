@@ -13,7 +13,6 @@ namespace heidi_schwartz_C968
 {
     public partial class mainscreen : Form
     {
-        // Checklist OK? where should be using try/catch?
         public mainscreen()
         {
             InitializeComponent();
@@ -100,6 +99,7 @@ namespace heidi_schwartz_C968
             {
                 return;
             }
+
             foreach (Product product in Inventory.Products)
             {
                 if (product.lookupAssociatedPart(CurrentPart.PartID) != null)
@@ -112,6 +112,7 @@ namespace heidi_schwartz_C968
 
         }
 
+
         private void deleteProductsClicked(object sender, EventArgs e)
         {
             if (dgvProductsMain.CurrentRow == null || !dgvProductsMain.CurrentRow.Selected)
@@ -119,23 +120,27 @@ namespace heidi_schwartz_C968
                 MessageBox.Show("Please select a product to delete.");
                 return;
             }
+
             Product CurrentProduct = dgvProductsMain.CurrentRow.DataBoundItem as Product;
-            // double check if user wants to continue
             DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete {CurrentProduct}?", "Delete Product", MessageBoxButtons.YesNo);
+            
             if (dialogResult == DialogResult.No)
             {
                 return;
             }
+            
             if (CurrentProduct.AssociatedParts.Count > 0)
             {
                 MessageBox.Show("Product has associated parts. Please remove all associated parts before deleting.");
                 return;
             }
+            
             Inventory.removeProduct(CurrentProduct.ProductID);
         }
 
         private void searchPartsClicked(object sender, EventArgs e)
         {
+            
             if (string.IsNullOrWhiteSpace(tbPartsSearch.Text))
             {
                 dgvPartsMain.DataSource = Inventory.AllParts;

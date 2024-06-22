@@ -17,7 +17,6 @@ namespace heidi_schwartz_C968
         private BindingList<Part> CurrentAssociatedParts;
         ErrorProvider toolTip = new ErrorProvider();
 
-        // is this ok?
         public productscreen()
         {
             InitializeComponent();
@@ -92,7 +91,6 @@ namespace heidi_schwartz_C968
             int min = int.Parse(tbMin.Text);
             int max = int.Parse(tbMax.Text);
 
-
             Inventory.addProduct(new Product(id, name, price, inStock, min, max));
 
             Product product = Inventory.lookupProduct(id);
@@ -139,6 +137,7 @@ namespace heidi_schwartz_C968
                 tbName.BackColor = System.Drawing.Color.White;
                 toolTip.SetError(tbName, "");
             }
+
             btnSaveProduct.Enabled = validateProduct();
         }
 
@@ -155,6 +154,7 @@ namespace heidi_schwartz_C968
                 tbInventory.BackColor = System.Drawing.Color.White;
                 toolTip.SetError(tbInventory, "");
             }
+
             btnSaveProduct.Enabled = validateProduct();
         }
 
@@ -188,7 +188,6 @@ namespace heidi_schwartz_C968
             {
                 tbMin.BackColor = System.Drawing.Color.Salmon;
                 tbMax.BackColor = System.Drawing.Color.Salmon;
-                // please input a valid min and max
                 toolTip.SetError(tbMin, "Please enter a valid minimum and maximum.");
                 toolTip.SetError(tbMax, "Please enter a valid minimum and maximum.");
             }
@@ -209,6 +208,7 @@ namespace heidi_schwartz_C968
                 toolTip.SetError(tbMin, "");
                 toolTip.SetError(tbMax, "");
             }
+
             btnSaveProduct.Enabled = validateProduct();
             }
 
@@ -225,6 +225,7 @@ namespace heidi_schwartz_C968
                 tbPrice.BackColor = System.Drawing.Color.White;
                 toolTip.SetError(tbPrice, "");
             }
+
             btnSaveProduct.Enabled = validateProduct();
         }
 

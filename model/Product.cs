@@ -46,14 +46,8 @@ namespace heidi_schwartz_C968.model
 
         public Part lookupAssociatedPart(int partID)
         {
-            foreach (Part part in AssociatedParts)
-            {
-                if (part.PartID == partID)
-                {
-                    return part;
-                }
-            }
-            return null;
+            return AssociatedParts.Where(part => part.PartID == partID)
+                                  .FirstOrDefault();
         }
 
         public override string ToString()
