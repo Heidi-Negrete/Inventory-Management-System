@@ -139,7 +139,11 @@ namespace heidi_schwartz_C968
                 return;
             }
 
-
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
             CurrentAssociatedParts.Remove(dgvAssociatedParts.CurrentRow.DataBoundItem as Part);
 
             btnSaveProduct.Enabled = validateProduct();
