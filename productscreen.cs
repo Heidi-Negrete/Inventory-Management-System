@@ -48,6 +48,7 @@ namespace heidi_schwartz_C968
 
             dgvAssociatedParts.DataSource = CurrentAssociatedParts;
             tbID.Enabled = false;
+            validateProduct();
             btnSaveProduct.Enabled = false;
 
             dgvAllParts.DataSource = Inventory.AllParts;
@@ -116,119 +117,6 @@ namespace heidi_schwartz_C968
             Close();
         }
 
-        private bool validateProduct()
-        {
-            int number;
-            decimal price;
-            return (!string.IsNullOrWhiteSpace(tbName.Text) && Int32.TryParse(tbInventory.Text, out number)
-                && Int32.TryParse(tbMax.Text, out number) && Int32.TryParse(tbMin.Text, out number)
-                && Decimal.TryParse(tbPrice.Text, out price));
-        }
-
-        private void nameTextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tbName.Text))
-            {
-                tbName.BackColor = System.Drawing.Color.Salmon;
-                toolTip.SetError(tbName, "Please enter a valid name.");
-            }
-            else
-            {
-                tbName.BackColor = System.Drawing.Color.White;
-                toolTip.SetError(tbName, "");
-            }
-
-            btnSaveProduct.Enabled = validateProduct();
-        }
-
-        private void inventoryTextChanged(object sender, EventArgs e)
-        {
-            int number;
-            if (!Int32.TryParse(tbInventory.Text, out number))
-            {
-                tbInventory.BackColor = System.Drawing.Color.Salmon;
-                toolTip.SetError(tbInventory, "Please enter a valid number.");
-            }
-            else
-            {
-                tbInventory.BackColor = System.Drawing.Color.White;
-                toolTip.SetError(tbInventory, "");
-            }
-
-            btnSaveProduct.Enabled = validateProduct();
-        }
-
-        private void maxTextChanged(object sender, EventArgs e)
-        {
-            validateMinMax();
-        }
-
-        private void minTextChanged(object sender, EventArgs e)
-        {
-            validateMinMax();
-        }
-
-        private void validateMinMax()
-        {
-            int min;
-            int max;
-            if (!Int32.TryParse(tbMin.Text, out min))
-            {
-                tbMin.BackColor = System.Drawing.Color.Salmon;
-                toolTip.SetError(tbMin, "Please enter a valid number.");
-                return;
-            }
-            if (!Int32.TryParse(tbMax.Text, out max))
-            {
-                tbMax.BackColor = System.Drawing.Color.Salmon;
-                toolTip.SetError(tbMax, "Please enter a valid number.");
-                return;
-            }
-            if (min > max || (min < 0 || max < 0))
-            {
-                tbMin.BackColor = System.Drawing.Color.Salmon;
-                tbMax.BackColor = System.Drawing.Color.Salmon;
-                toolTip.SetError(tbMin, "Please enter a valid minimum and maximum.");
-                toolTip.SetError(tbMax, "Please enter a valid minimum and maximum.");
-            }
-            if (min > Inventory.CurrentProduct.InStock || max < Inventory.CurrentProduct.InStock)
-            {
-                tbMin.BackColor = System.Drawing.Color.Salmon;
-                tbMax.BackColor = System.Drawing.Color.Salmon;
-                tbInventory.BackColor = System.Drawing.Color.Salmon;
-                toolTip.SetError(tbInventory, "Inventory must be between the minimum and maximum.");
-                toolTip.SetError(tbMin, "Inventory must be greater than or equal to minimum.");
-                toolTip.SetError(tbMax, "Inventory must be less than or equal to the maximum.");
-            }
-            else
-            {
-                tbMin.BackColor = System.Drawing.Color.White;
-                tbMax.BackColor = System.Drawing.Color.White;
-                toolTip.SetError(tbInventory, "");
-                toolTip.SetError(tbMin, "");
-                toolTip.SetError(tbMax, "");
-            }
-
-            btnSaveProduct.Enabled = validateProduct();
-            }
-
-        private void priceTextChanged(object sender, EventArgs e)
-        {
-            decimal price;
-            if (!Decimal.TryParse(tbPrice.Text, out price))
-            {
-                tbPrice.BackColor = System.Drawing.Color.Salmon;
-                toolTip.SetError(tbPrice, "Please enter a valid price.");
-            }
-            else
-            {
-                tbPrice.BackColor = System.Drawing.Color.White;
-                toolTip.SetError(tbPrice, "");
-            }
-
-            btnSaveProduct.Enabled = validateProduct();
-        }
-
         private void addPartClicked(object sender, EventArgs e)
         {
             if (dgvAllParts.CurrentRow == null || !dgvAllParts.CurrentRow.Selected)
@@ -287,6 +175,134 @@ namespace heidi_schwartz_C968
             {
                 searchPartsClicked(sender, e);
             }
+        }
+
+        private void nameTextChanged(object sender, EventArgs e)
+        {
+            btnSaveProduct.Enabled = validateProduct();
+        }
+
+        private void priceTextChanged(object sender, EventArgs e)
+        {
+            btnSaveProduct.Enabled = validateProduct();
+        }
+
+        private void inventoryTextChanged(object sender, EventArgs e)
+        {
+            btnSaveProduct.Enabled = validateProduct();
+        }
+
+        private void maxTextChanged(object sender, EventArgs e)
+        {
+            btnSaveProduct.Enabled = validateProduct();
+        }
+
+        private void minTextChanged(object sender, EventArgs e)
+        {
+            btnSaveProduct.Enabled = validateProduct();
+        }
+
+        private bool validateProduct()
+        {
+            int min;
+            int max;
+            int stock;
+            decimal price;
+            bool isValid = true;
+
+            // Validate Name and Price
+
+            if (!Decimal.TryParse(tbPrice.Text, out price))
+            {
+                tbPrice.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbPrice, "Please enter a valid price.");
+                isValid = false;
+            }
+            else
+            {
+                tbPrice.BackColor = System.Drawing.Color.White;
+                toolTip.SetError(tbPrice, "");
+            }
+
+            if (string.IsNullOrWhiteSpace(tbName.Text))
+            {
+                tbName.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbName, "Please enter a valid name.");
+                isValid = false;
+            }
+            else
+            {
+                tbName.BackColor = System.Drawing.Color.White;
+                toolTip.SetError(tbName, "");
+            }
+
+            // Validate Inventory and Min/Max for valid numbers.
+
+            if (!Int32.TryParse(tbInventory.Text, out stock))
+            {
+                tbInventory.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbInventory, "Please enter a valid number.");
+                isValid = false;
+            }
+            else
+            {
+                tbInventory.BackColor = System.Drawing.Color.White;
+                toolTip.SetError(tbInventory, "");
+            }
+
+            if (!Int32.TryParse(tbMin.Text, out min))
+            {
+                tbMin.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbMin, "Please enter a valid number.");
+                isValid = false;
+            }
+            if (!Int32.TryParse(tbMax.Text, out max))
+            {
+                tbMax.BackColor = System.Drawing.Color.Salmon;
+                toolTip.SetError(tbMax, "Please enter a valid number.");
+                isValid = false;
+            }
+
+            if (isValid) // if numeric, start checking range validity
+            {
+
+                if (min > max || (min < 0 || max < 0))
+                {
+                    tbMin.BackColor = System.Drawing.Color.Salmon;
+                    tbMax.BackColor = System.Drawing.Color.Salmon;
+                    if (min > max)
+                    {
+                        toolTip.SetError(tbMin, "Minimum must be less than maximum.");
+                        toolTip.SetError(tbMax, "Maximum must be greater than minimum.");
+                    }
+                    else
+                    {
+                        toolTip.SetError(tbMin, "Please enter a valid minimum and maximum.");
+                        toolTip.SetError(tbMax, "Please enter a valid minimum and maximum.");
+                    }
+                    isValid = false;
+                }
+                else if (min > stock || max < stock)
+                {
+                    tbMin.BackColor = System.Drawing.Color.Salmon;
+                    tbMax.BackColor = System.Drawing.Color.Salmon;
+                    tbInventory.BackColor = System.Drawing.Color.Salmon;
+                    toolTip.SetError(tbInventory, "Inventory must be between the minimum and maximum.");
+                    toolTip.SetError(tbMin, "Inventory must be greater than or equal to minimum.");
+                    toolTip.SetError(tbMax, "Inventory must be less than or equal to the maximum.");
+                    isValid = false;
+                }
+                else
+                {
+                    tbMin.BackColor = System.Drawing.Color.White;
+                    tbMax.BackColor = System.Drawing.Color.White;
+                    toolTip.SetError(tbInventory, "");
+                    toolTip.SetError(tbMin, "");
+                    toolTip.SetError(tbMax, "");
+                }
+            }
+
+            return isValid; 
         }
     }
 }
