@@ -80,7 +80,7 @@
             this.tbPrice.Location = new System.Drawing.Point(118, 188);
             this.tbPrice.Name = "tbPrice";
             this.tbPrice.Size = new System.Drawing.Size(146, 20);
-            this.tbPrice.TabIndex = 21;
+            this.tbPrice.TabIndex = 20;
             this.tbPrice.TextChanged += new System.EventHandler(this.priceTextChanged);
             // 
             // tbInventory
@@ -88,7 +88,7 @@
             this.tbInventory.Location = new System.Drawing.Point(118, 237);
             this.tbInventory.Name = "tbInventory";
             this.tbInventory.Size = new System.Drawing.Size(146, 20);
-            this.tbInventory.TabIndex = 20;
+            this.tbInventory.TabIndex = 21;
             this.tbInventory.TextChanged += new System.EventHandler(this.inventoryTextChanged);
             // 
             // tbName
@@ -173,7 +173,7 @@
             this.rbInHouse.Location = new System.Drawing.Point(156, 27);
             this.rbInHouse.Name = "rbInHouse";
             this.rbInHouse.Size = new System.Drawing.Size(101, 24);
-            this.rbInHouse.TabIndex = 24;
+            this.rbInHouse.TabIndex = 16;
             this.rbInHouse.TabStop = true;
             this.rbInHouse.Text = "In-House";
             this.rbInHouse.UseVisualStyleBackColor = true;
@@ -186,7 +186,7 @@
             this.rbOutsourced.Location = new System.Drawing.Point(263, 27);
             this.rbOutsourced.Name = "rbOutsourced";
             this.rbOutsourced.Size = new System.Drawing.Size(120, 24);
-            this.rbOutsourced.TabIndex = 25;
+            this.rbOutsourced.TabIndex = 17;
             this.rbOutsourced.TabStop = true;
             this.rbOutsourced.Text = "Outsourced";
             this.rbOutsourced.UseVisualStyleBackColor = true;
@@ -197,7 +197,7 @@
             this.tbPartSource.Location = new System.Drawing.Point(157, 330);
             this.tbPartSource.Name = "tbPartSource";
             this.tbPartSource.Size = new System.Drawing.Size(146, 20);
-            this.tbPartSource.TabIndex = 26;
+            this.tbPartSource.TabIndex = 24;
             this.tbPartSource.TextChanged += new System.EventHandler(this.sourceTextChanged);
             // 
             // lblPartSource
@@ -216,7 +216,7 @@
             this.btnCancel.Location = new System.Drawing.Point(280, 368);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(93, 40);
-            this.btnCancel.TabIndex = 29;
+            this.btnCancel.TabIndex = 26;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.cancelClicked);
@@ -227,7 +227,7 @@
             this.btnSavePart.Location = new System.Drawing.Point(171, 368);
             this.btnSavePart.Name = "btnSavePart";
             this.btnSavePart.Size = new System.Drawing.Size(93, 40);
-            this.btnSavePart.TabIndex = 28;
+            this.btnSavePart.TabIndex = 25;
             this.btnSavePart.Text = "Save";
             this.btnSavePart.UseVisualStyleBackColor = true;
             this.btnSavePart.Click += new System.EventHandler(this.saveClicked);

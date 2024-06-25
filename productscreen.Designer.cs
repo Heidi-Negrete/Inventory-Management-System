@@ -125,7 +125,7 @@
             this.tbPrice.Location = new System.Drawing.Point(106, 152);
             this.tbPrice.Name = "tbPrice";
             this.tbPrice.Size = new System.Drawing.Size(146, 20);
-            this.tbPrice.TabIndex = 9;
+            this.tbPrice.TabIndex = 8;
             this.tbPrice.TextChanged += new System.EventHandler(this.priceTextChanged);
             // 
             // tbInventory
@@ -133,7 +133,7 @@
             this.tbInventory.Location = new System.Drawing.Point(106, 213);
             this.tbInventory.Name = "tbInventory";
             this.tbInventory.Size = new System.Drawing.Size(146, 20);
-            this.tbInventory.TabIndex = 8;
+            this.tbInventory.TabIndex = 9;
             this.tbInventory.TextChanged += new System.EventHandler(this.inventoryTextChanged);
             // 
             // tbName
