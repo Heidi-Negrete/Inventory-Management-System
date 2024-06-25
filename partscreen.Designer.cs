@@ -77,7 +77,7 @@
             // 
             // tbPrice
             // 
-            this.tbPrice.Location = new System.Drawing.Point(115, 241);
+            this.tbPrice.Location = new System.Drawing.Point(118, 188);
             this.tbPrice.Name = "tbPrice";
             this.tbPrice.Size = new System.Drawing.Size(146, 20);
             this.tbPrice.TabIndex = 21;
@@ -85,7 +85,7 @@
             // 
             // tbInventory
             // 
-            this.tbInventory.Location = new System.Drawing.Point(115, 190);
+            this.tbInventory.Location = new System.Drawing.Point(118, 237);
             this.tbInventory.Name = "tbInventory";
             this.tbInventory.Size = new System.Drawing.Size(146, 20);
             this.tbInventory.TabIndex = 20;
@@ -93,7 +93,7 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(115, 135);
+            this.tbName.Location = new System.Drawing.Point(118, 135);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(146, 20);
             this.tbName.TabIndex = 19;
@@ -101,7 +101,7 @@
             // 
             // tbID
             // 
-            this.tbID.Location = new System.Drawing.Point(115, 88);
+            this.tbID.Location = new System.Drawing.Point(118, 88);
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(146, 20);
             this.tbID.TabIndex = 18;
@@ -130,7 +130,7 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(4, 237);
+            this.lblPrice.Location = new System.Drawing.Point(7, 184);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(105, 24);
             this.lblPrice.TabIndex = 15;
@@ -140,7 +140,7 @@
             // 
             this.lblInventory.AutoSize = true;
             this.lblInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInventory.Location = new System.Drawing.Point(7, 186);
+            this.lblInventory.Location = new System.Drawing.Point(12, 232);
             this.lblInventory.Name = "lblInventory";
             this.lblInventory.Size = new System.Drawing.Size(86, 24);
             this.lblInventory.TabIndex = 14;
@@ -150,7 +150,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(28, 135);
+            this.lblName.Location = new System.Drawing.Point(35, 135);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(61, 24);
             this.lblName.TabIndex = 13;
@@ -160,7 +160,7 @@
             // 
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.Location = new System.Drawing.Point(62, 83);
+            this.lblID.Location = new System.Drawing.Point(69, 83);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(27, 24);
             this.lblID.TabIndex = 12;
